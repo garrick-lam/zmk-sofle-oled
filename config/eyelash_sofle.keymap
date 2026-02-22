@@ -37,6 +37,23 @@
         tap-ms = <100>;
     };
 
+    mouse_hor_scroll: mouse_hor_scroll {
+        compatible = "zmk,behavior-sensor-rotate";
+        label = "MOUSE_HOR_SCROLL";
+        #sensor-binding-cells = <0>;
+        bindings = <&msc MOVE_X(-10)>, <&msc MOVE_X(10)>;
+    };
+
+    caplock_hold_tap: caplock_hold_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "CAPLOCK_HOLD_TAP";
+        bindings = <&none>, <&none>;
+
+        #binding-cells = <2>;
+        tapping-term-ms = <150>;
+        flavor = "balanced";
+    };
+
     behaviors {
     };
 
@@ -54,14 +71,14 @@
 
         layer_main {
             bindings = <
-&kp ESC     &kp N1        &kp N2        &kp N3     &kp N4  &kp N5    &kp UP_ARROW     &kp N6  &kp N7     &kp N8             &kp N9           &kp N0      &kp BACKSPACE
-&kp TAB     &kp Q         &kp W         &kp E      &kp R   &kp T     &kp DOWN_ARROW   &kp Y   &kp U      &kp I              &kp O            &kp P       &kp BSLH
-&kp CAPS    &kp A         &kp S         &kp D      &kp F   &kp G     &kp LEFT_ARROW   &kp H   &kp J      &kp K              &kp L            &kp SEMI    &kp APOS
-&kp LSHFT   &kp Z         &kp X         &kp C      &kp V   &kp B     &kp RIGHT_ARROW  &kp N   &kp M      &kp COMMA          &kp DOT          &kp FSLH    &kp ENTER
-&kp C_MUTE  &kp LEFT_GUI  &kp LEFT_ALT  &kp ENTER  &mo 1   &mo 2     &kp ENTER        &mo 3   &kp SPACE  &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC                &kp N1        &kp N2        &kp N3     &kp N4  &kp N5    &kp UP_ARROW     &kp N6  &kp N7     &kp N8             &kp N9           &kp N0      &kp BACKSPACE
+&kp TAB                &kp Q         &kp W         &kp E      &kp R   &kp T     &kp DOWN_ARROW   &kp Y   &kp U      &kp I              &kp O            &kp P       &kp BSLH
+&mt LEFT_CONTROL CAPS  &kp A         &kp S         &kp D      &kp F   &kp G     &kp LEFT_ARROW   &kp H   &kp J      &kp K              &kp L            &kp SEMI    &kp APOS
+&kp LSHFT              &kp Z         &kp X         &kp C      &kp V   &kp B     &kp RIGHT_ARROW  &kp N   &kp M      &kp COMMA          &kp DOT          &kp FSLH    &kp ENTER
+&kp C_MUTE             &kp LEFT_GUI  &kp LEFT_ALT  &kp ENTER  &mo 1   &mo 2     &kp ENTER        &mo 3   &kp SPACE  &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &kp DELETE
             >;
 
-            sensor-bindings = <&inc_dec_kp C_AC_SCROLL_UP C_AC_SCROLL_DOWN>;
+            sensor-bindings = <&mouse_hor_scroll>;
             label = "MAIN";
         };
 
@@ -74,7 +91,7 @@
 &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+            sensor-bindings = <&scroll_encoder>;
             label = "NAV";
         };
 
@@ -100,7 +117,7 @@
 &trans     &trans        &trans          &trans        &trans        &trans          &mkp LCLK        &trans  &trans  &trans      &trans     &trans
             >;
 
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOLUME_DOWN>;
             label = "BT";
         };
     };
