@@ -61,7 +61,7 @@
 &kp C_MUTE  &kp LEFT_GUI  &kp LEFT_ALT  &kp ENTER  &mo 1   &mo 2     &kp ENTER        &mo 3   &kp SPACE  &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &kp DELETE
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_AC_SCROLL_UP C_AC_SCROLL_DOWN>;
             label = "MAIN";
         };
 
@@ -74,7 +74,7 @@
 &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
             >;
 
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             label = "NAV";
         };
 
@@ -87,7 +87,7 @@
 &trans     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans           &kp KP_N0      &kp KP_DOT       &trans
             >;
 
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
             label = "NUM";
         };
 
