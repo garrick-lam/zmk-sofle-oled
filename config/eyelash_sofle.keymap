@@ -40,7 +40,7 @@
         compatible = "zmk,behavior-sensor-rotate";
         label = "MOUSE_HOR_SCROLL";
         #sensor-binding-cells = <0>;
-        bindings = <&kp LSHIFT &msc SCRL_DOWN>, <&kp LSHIFT &msc SCRL_UP>;
+        bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
         tap-ms = <100>;
     };
 
@@ -58,7 +58,7 @@
         lh_hrm: left_hand_hrm {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             require-prior-idle-ms = <150>;
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
@@ -70,7 +70,7 @@
         rh_hrm: right_hand_hrm {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             require-prior-idle-ms = <150>;
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
