@@ -41,7 +41,7 @@
         compatible = "zmk,behavior-sensor-rotate";
         label = "MOUSE_HOR_SCROLL";
         #sensor-binding-cells = <0>;
-        bindings = <&msc MOVE_X(-10)>, <&msc MOVE_X(10)>;
+        bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
     };
 
     caplock_hold_tap: caplock_hold_tap {
@@ -114,7 +114,7 @@
 &kp C_MUTE             &kp LEFT_GUI   &kp LEFT_ALT   &kp ENTER       &mo 1           &mo 2          &kp ENTER        &mo 3           &kp SPACE       &kp RIGHT_CONTROL &kp RIGHT_SHIFT &kp DELETE
             >;
 
-            sensor-bindings = <&mouse_hor_scroll>;
+            sensor-bindings = <&scroll_encoder>;
             label = "MAIN";
         };
 
@@ -127,7 +127,7 @@
 &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
             >;
 
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&mouse_hor_scroll>;
             label = "NAV";
         };
 
