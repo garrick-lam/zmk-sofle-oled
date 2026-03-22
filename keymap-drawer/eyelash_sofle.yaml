@@ -58,7 +58,7 @@ layers:
   - $$mdi:apple-keyboard-option$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - NAV
-  - NUM
+  - {t: NUM, h: NUM}
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - BT
   - $$mdi:keyboard-space$$
@@ -155,8 +155,8 @@ layers:
   - KP 7
   - KP 8
   - KP 9
-  - {t: '-', s: _}
-  - {t: '=', s: +}
+  - _
+  - +
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
