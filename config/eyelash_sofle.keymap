@@ -46,16 +46,6 @@
         tap-ms = <100>;
     };
 
-    caplock_hold_tap: caplock_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "CAPLOCK_HOLD_TAP";
-        bindings = <&none>, <&none>;
-
-        #binding-cells = <2>;
-        tapping-term-ms = <150>;
-        flavor = "balanced";
-    };
-
     behaviors {
         lh_hrm: left_hand_hrm {
             compatible = "zmk,behavior-hold-tap";
@@ -87,7 +77,7 @@
             hold-trigger-on-release;
         };
 
-        hold_layer: hold_layer {
+        ht_layer: ht_layer {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
@@ -97,7 +87,20 @@
             bindings = <&mo>, <&tog>;
 
             hold-trigger-on-release;
-            label = "HOLD_LAYER";
+            label = "HT_LAYER";
+        };
+
+        ht_mo_kp: ht_mo_kp {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <250>;
+            quick-tap-ms = <175>;
+            bindings = <&mo>, <&kp>;
+
+            hold-trigger-on-release;
+            label = "HT_MO_KP";
         };
     };
 
@@ -115,11 +118,11 @@
 
         layer_main {
             bindings = <
-&kp ESC                &kp N1          &kp N2          &kp N3           &kp N4           &kp N5             &kp UP_ARROW     &kp N6  &kp N7           &kp N8             &kp N9           &kp N0             &kp BACKSPACE
-&kp TAB                &kp Q           &kp W           &kp E            &kp R            &kp T              &kp DOWN_ARROW   &kp Y   &kp U            &kp I              &kp O            &kp P              &kp BSLH
-&mt LEFT_CONTROL CAPS  &lh_hrm LGUI A  &lh_hrm LALT S  &lh_hrm LCTRL D  &lh_hrm LSHFT F  &kp G              &kp LEFT_ARROW   &kp H   &rh_hrm RSHFT J  &rh_hrm RCTRL K    &rh_hrm RALT L   &rh_hrm RGUI SEMI  &kp APOS
-&kp LSHFT              &kp Z           &kp X           &kp C            &kp V            &kp B              &kp RIGHT_ARROW  &kp N   &kp M            &kp COMMA          &kp DOT          &kp FSLH           &kp ENTER
-&kp C_MUTE             &kp LEFT_GUI    &kp LEFT_ALT    &kp ENTER        &mo 1            &hold_layer 2 2    &kp ENTER        &mo 3   &kp SPACE        &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC                &kp N1          &kp N2          &kp N3           &kp N4             &kp N5           &kp UP_ARROW     &kp N6  &kp N7           &kp N8             &kp N9           &kp N0             &kp BACKSPACE
+&kp TAB                &kp Q           &kp W           &kp E            &kp R              &kp T            &kp DOWN_ARROW   &kp Y   &kp U            &kp I              &kp O            &kp P              &kp BSLH
+&mt LEFT_CONTROL CAPS  &lh_hrm LGUI A  &lh_hrm LALT S  &lh_hrm LCTRL D  &lh_hrm LSHFT F    &kp G            &kp LEFT_ARROW   &kp H   &rh_hrm RSHFT J  &rh_hrm RCTRL K    &rh_hrm RALT L   &rh_hrm RGUI SEMI  &kp APOS
+&kp LSHFT              &kp Z           &kp X           &kp C            &kp V              &kp B            &kp RIGHT_ARROW  &kp N   &kp M            &kp COMMA          &kp DOT          &kp FSLH           &kp ENTER
+&kp C_MUTE             &kp LEFT_GUI    &kp LEFT_ALT    &kp ENTER        &ht_mo_kp 1 SPACE  &ht_layer 2 2    &kp ENTER        &mo 3   &kp SPACE        &kp RIGHT_CONTROL  &kp RIGHT_SHIFT  &kp DELETE
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -141,11 +144,11 @@
 
         layer_1 {
             bindings = <
-&kp TILDE  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans           &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp KP_PLUS     &trans
-&trans     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &kp KP_N7        &kp KP_N8      &kp KP_N9        &kp UNDERSCORE  &kp PLUS
-&trans     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &kp KP_N4        &kp KP_N5      &kp KP_N6        &kp LEFT_BRACE  &kp RIGHT_BRACE
-&trans     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &kp KP_NUMBER_1  &kp KP_N2      &kp KP_NUMBER_3  &trans          &trans
-&trans     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans           &kp KP_N0      &kp KP_DOT       &trans
+&kp TILDE  &trans  &trans          &trans          &trans           &trans    &mmv MOVE_UP     &trans  &trans           &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp KP_PLUS     &trans
+&trans     &trans  &trans          &kp UP_ARROW    &trans           &trans    &mmv MOVE_DOWN   &trans  &kp KP_N7        &kp KP_N8      &kp KP_N9        &kp UNDERSCORE  &kp PLUS
+&trans     &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans    &mmv MOVE_LEFT   &trans  &kp KP_N4        &kp KP_N5      &kp KP_N6        &kp LEFT_BRACE  &kp RIGHT_BRACE
+&trans     &trans  &trans          &trans          &trans           &trans    &mmv MOVE_RIGHT  &trans  &kp KP_NUMBER_1  &kp KP_N2      &kp KP_NUMBER_3  &trans          &trans
+&trans     &trans  &trans          &trans          &trans           &trans    &mkp LCLK        &trans  &trans           &kp KP_N0      &kp KP_DOT       &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
