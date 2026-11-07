@@ -13,9 +13,13 @@ manifest:
       import: app/west.yml
     - name: zmk-nice-oled
       remote: mctechnology17
-      revision: main
+      # 2026-01-26: fix: add missing vim symbol for static image peripheral build
+      # https://github.com/mctechnology17/zmk-nice-oled/commit/46f824abb2bd41f1287c5c68abd14122af6042a3
+      revision: 46f824abb2bd41f1287c5c68abd14122af6042a3
     - name: zmk-board-eyelash
       remote: eyelash
-      revision: main
+      # 2026-08-17: Update eyelash_nano_defconfig (adds CONFIG_ZMK_EXT_POWER=y)
+      # https://github.com/a741725193/zmk-board-eyelash/commit/a90ac672bf570970b91a46967c177fcad41a2e44
+      revision: a90ac672bf570970b91a46967c177fcad41a2e44
   self:
     path: config
